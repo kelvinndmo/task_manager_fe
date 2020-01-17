@@ -5,7 +5,12 @@
         <h3>{{ task.title }}</h3>
         <ul class="list-group mb-3">
           <li class="list-group-item">Description: {{ task.description }}</li>
-          <li class="list-group-item">status: {{ task.completed }}</li>
+          <li class="list-group-item ">
+            Completed:
+            <span [ngClass]="{ 'text-danger': task.completed == false }">
+              {{ task.completed }}
+            </span>
+          </li>
         </ul>
         <div class="row">
           <div class="col-md-4">
