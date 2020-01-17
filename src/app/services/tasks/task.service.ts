@@ -11,7 +11,7 @@ const httpOptions = {
   providedIn: "root"
 })
 export class TaskService {
-  baseURL = "https://task-manager-be.herokuapp.com";
+  baseURL = "http://localhost:3000";
   constructor(private http: HttpClient) {}
 
   getTasks(): Observable<any> {
@@ -28,7 +28,14 @@ export class TaskService {
   }
 
   updateTask(task): Observable<any> {
+    console.log(task);
+
+    const updates = {
+      completed: task.completed,
+      description: task.description
+    };
+
     const url = `${this.baseURL}/tasks/${task._id}`;
-    return this.http.patch(url, task, httpOptions);
+    return this.http.put(url, updates, httpOptions);
   }
 }

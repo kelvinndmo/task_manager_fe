@@ -24,6 +24,7 @@
     "@angular/router": "~8.2.14",
     "bootstrap": "^4.4.1",
     "express": "^4.17.1",
+    "ngx-spinner": "^8.1.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"

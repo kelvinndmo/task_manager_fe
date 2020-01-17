@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Task } from "src/app/models/Task";
 import { FormGroup, Validator, FormBuilder, Validators } from "@angular/forms";
 import { TaskService } from "src/app/services/tasks/task.service";
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: "app-tasks",
@@ -13,9 +14,14 @@ export class TasksComponent implements OnInit {
   task = new Task();
   tasks = [];
 
-  constructor(private fb: FormBuilder, private taskService: TaskService) {}
+  constructor(
+    private fb: FormBuilder,
+    private taskService: TaskService,
+    private spinner: NgxSpinnerService
+  ) {}
 
   ngOnInit() {
+    this.spinner.show();
     this.taskForm = this.fb.group({
       title: ["", [Validators.minLength(2), Validators.required]],
       description: ["", [Validators.minLength(2)]],
@@ -24,6 +30,7 @@ export class TasksComponent implements OnInit {
 
     this.taskService.getTasks().subscribe(data => {
       this.tasks = data;
+      this.spinner.hide();
     });
   }
 
@@ -37,7 +44,10 @@ export class TasksComponent implements OnInit {
     // const task = (this.tasks = this.tasks.filter(taskk => task._id === taskID));
     this.tasks.forEach(task => {
       if (task._id === taskID) {
+        console.log(task);
         task.completed = !task.completed;
+        console.log(task);
+
         this.taskService.updateTask(task);
       }
     });
