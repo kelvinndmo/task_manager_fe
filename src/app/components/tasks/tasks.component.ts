@@ -33,6 +33,16 @@ export class TasksComponent implements OnInit {
     this.taskService.deleteTask(taskId);
   }
 
+  completeTask(taskID) {
+    // const task = (this.tasks = this.tasks.filter(taskk => task._id === taskID));
+    this.tasks.forEach(task => {
+      if (task._id === taskID) {
+        task.completed = !task.completed;
+        this.taskService.updateTask(task);
+      }
+    });
+  }
+
   save() {
     const task = this.taskForm.value;
     this.taskService.postTask(task).subscribe(task => {

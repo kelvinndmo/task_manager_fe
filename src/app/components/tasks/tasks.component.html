@@ -5,7 +5,7 @@
         <h3>{{ task.title }}</h3>
         <ul class="list-group mb-3">
           <li class="list-group-item">Description: {{ task.description }}</li>
-          <li class="list-group-item ">
+          <li class="list-group-item">
             Completed:
             <span [ngClass]="{ 'text-danger': task.completed == false }">
               {{ task.completed }}
@@ -13,6 +13,15 @@
           </li>
         </ul>
         <div class="row">
+          <div class="col-md-4">
+            <button
+              class="btn btn-success btn-s"
+              (click)="completeTask(task._id)"
+              [disabled]="task.completed === true"
+            >
+              Complete Task
+            </button>
+          </div>
           <div class="col-md-4">
             <button class="btn btn-danger btn-s" (click)="deleteTask(task._id)">
               Delete Task

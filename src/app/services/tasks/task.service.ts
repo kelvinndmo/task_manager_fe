@@ -26,4 +26,9 @@ export class TaskService {
     const url = `${this.baseURL}/tasks/${postId}`;
     return this.http.delete(url, httpOptions);
   }
+
+  updateTask(task): Observable<any> {
+    const url = `${this.baseURL}/tasks/${task._id}`;
+    return this.http.patch(url, task, httpOptions);
+  }
 }
