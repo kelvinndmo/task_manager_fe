@@ -29,13 +29,19 @@
               required
               minlength="2"
               formControlName="title"
+              [ngClass]="{
+                'is-invalid':
+                  (taskForm.get('title').touched ||
+                    taskForm.get('title').dirty) &&
+                  !taskForm.get('title').valid
+              }"
             />
-            <div
+            <span
               *ngIf="taskForm.get('title').errors?.required"
               class="invalid-feedback"
             >
               Title is required
-            </div>
+            </span>
             <div
               *ngIf="taskForm.get('title').errors?.minlength"
               class="invalid-feedback"
@@ -52,6 +58,12 @@
               required
               minlength="2"
               formControlName="description"
+              [ngClass]="{
+                'is-invalid':
+                  (taskForm.get('description').touched ||
+                    taskForm.get('description').dirty) &&
+                  !taskForm.get('description').valid
+              }"
             />
             <div
               *ngIf="taskForm.get('description').errors?.required"
@@ -67,7 +79,10 @@
             </div>
           </div>
 
-          <button class="btn btn-block btn-success mb-3 mt-3">
+          <button
+            class="btn btn-block btn-success mb-3 mt-3"
+            [disabled]="!taskForm.valid"
+          >
             Add Task
           </button>
         </form>
