@@ -21,7 +21,6 @@ export class TasksComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.spinner.show();
     this.taskForm = this.fb.group({
       title: ["", [Validators.minLength(2), Validators.required]],
       description: ["", [Validators.minLength(2)]],
@@ -30,7 +29,6 @@ export class TasksComponent implements OnInit {
 
     this.taskService.getTasks().subscribe(data => {
       this.tasks = data;
-      this.spinner.hide();
     });
   }
 
