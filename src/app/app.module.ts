@@ -6,8 +6,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { TasksComponent } from "./components/tasks/tasks.component";
 import { NavbarComponent } from "./components/navbar/navbar.component";
-import { NgxSpinnerModule } from "ngx-spinner";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+
 @NgModule({
   declarations: [AppComponent, TasksComponent, NavbarComponent],
   imports: [
@@ -15,9 +14,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule,
-    NgxSpinnerModule,
-    BrowserAnimationsModule
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
