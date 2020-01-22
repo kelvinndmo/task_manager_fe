@@ -16,10 +16,19 @@
           <div class="col-md-4">
             <button
               class="btn btn-success btn-s"
+              *ngIf="!task.completed"
               (click)="completeTask(task._id)"
               [disabled]="task.completed === true"
             >
               Complete Task
+            </button>
+            <button
+              class="btn btn-primary"
+              *ngIf="task.completed"
+              (click)="completeTask(task._id)"
+              [disabled]="task.completed === false"
+            >
+              Undo Complete
             </button>
           </div>
           <div class="col-md-4">

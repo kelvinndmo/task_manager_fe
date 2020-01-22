@@ -22,20 +22,18 @@ export class TaskService {
     return this.http.post<Task>(`${this.baseURL}/tasks`, task, httpOptions);
   }
 
-  deleteTask(postId): Observable<any> {
-    const url = `${this.baseURL}/tasks/${postId}`;
+  deleteTask(id): Observable<any> {
+    const url = `${this.baseURL}/tasks/${id}`;
     return this.http.delete(url, httpOptions);
   }
 
   updateTask(task): Observable<any> {
-    console.log(task);
-
     const updates = {
       completed: task.completed,
       description: task.description
     };
 
     const url = `${this.baseURL}/tasks/${task._id}`;
-    return this.http.put(url, updates, httpOptions);
+    return this.http.patch(url, updates, httpOptions);
   }
 }

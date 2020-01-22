@@ -35,28 +35,35 @@ export class TasksComponent implements OnInit {
   }
 
   deleteTask(taskId) {
+    this.spinner.show();
+    this.taskService.deleteTask(taskId).subscribe(task => {
+      this.spinner.hide();
+    });
     this.tasks = this.tasks.filter(task => task._id !== taskId);
-
-    this.taskService.deleteTask(taskId);
   }
 
   completeTask(taskID) {
     // const task = (this.tasks = this.tasks.filter(taskk => task._id === taskID));
     this.tasks.forEach(task => {
       if (task._id === taskID) {
-        console.log(task);
         task.completed = !task.completed;
-        console.log(task);
-
-        this.taskService.updateTask(task);
+        this.spinner.show();
+        this.taskService.updateTask(task).subscribe(task => {
+          this.spinner.hide();
+        });
       }
     });
   }
 
   save() {
-    const task = this.taskForm.value;
+    let task = this.taskForm.value;
     this.taskService.postTask(task).subscribe(task => {
       this.tasks.push(task);
+      task = {
+        title: "",
+        completed: false,
+        description: ""
+      };
     });
   }
 }
